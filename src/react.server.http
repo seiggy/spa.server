@@ -1,0 +1,6 @@
+@Forseti.react.Server_HostAddress = http://localhost:5088
+
+GET {{Forseti.react.Server_HostAddress}}/api/configuration/
+Accept: application/json
+
+###
