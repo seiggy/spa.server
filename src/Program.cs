@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Server.HttpSys;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using react.server.Logging;
+using spa.server.Logging;
 
-namespace react.server
+namespace spa.server
 {
     public class Program
     {

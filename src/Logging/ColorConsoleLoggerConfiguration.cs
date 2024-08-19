@@ -1,4 +1,4 @@
-﻿namespace react.server.Logging
+﻿namespace spa.server.Logging
 {
     public sealed class ColorConsoleLoggerConfiguration
     {

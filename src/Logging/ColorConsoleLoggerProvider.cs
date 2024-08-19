@@ -3,7 +3,7 @@ using System.Runtime.Versioning;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace react.server.Logging
+namespace spa.server.Logging
 {
     [UnsupportedOSPlatform("browser")]
     [ProviderAlias("ColorConsole")]

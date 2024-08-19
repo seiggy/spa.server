@@ -1,9 +1,12 @@
 # react.server
 
-react.server is a .NET 8 ASP.NET Core generic hosting app designed to facilitate the hosting of React Single Page Applications (SPAs) behind the Kestrel web server within a Docker container. This project provides a seamless way to serve your React applications with ease and includes various enhancements like configuration dumping and static file compression.
+spa.server is a .NET 8 ASP.NET Core generic hosting app designed to facilitate the hosting of React Single Page Applications (SPAs) behind the Kestrel web server within a Docker container. This project provides a seamless way to serve your React applications with ease and includes various enhancements like configuration dumping and static file compression.
 
 ### Why?
 Yeah, you can host react using nginx or any other web server, and all that fun jazz. However, there's some constraints that frustrated me about it. No way to load environment specific variables without building shell scripts to copy them to a file on start-up. Having to use nginx config files, when I'm a .NET/C# dev - just outside my comfort zone and I've only got so much time in a day. Kestrel is light and fast, and easy to configure with my primary skills, so it made sense for me to use this. Also way easier for me to add in a variety of systems, and I'll probably even add in MEF to support drop-in extensions. So yeah, mostly just a personal project for lowering my support spread for the times I needed to host a SPA in a container.
+
+### Angular, Vue, etc?
+Very well may work. I haven't tested those SPA frameworks yet, and the server does a few things right now that are a bit specific to React. I'll eventually validate those work properly as well, but for now, the app only officially supports react v18, as that's all I've tested it with.
 
 ## Features
 

@@ -1,0 +1,6 @@
+@spa.Server_HostAddress = http://localhost:5088
+
+GET {{spa.Server_HostAddress}}/api/configuration/
+Accept: application/json
+
+###

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging.Configuration;
 
-namespace react.server.Logging
+namespace spa.server.Logging
 {
     public static class ColorConsoleLoggerExtensions
     {

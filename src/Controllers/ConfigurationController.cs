@@ -1,9 +1,9 @@
 ﻿using System.Text;
-using react.server.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using spa.server.Model;
 
-namespace react.server.Controllers;
+namespace spa.server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

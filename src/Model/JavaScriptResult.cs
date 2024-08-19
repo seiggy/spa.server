@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace react.server.Model
+namespace spa.server.Model
 {
     public class JavaScriptResult : ContentResult
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace react.server.Logging
+namespace spa.server.Logging
 {
     public sealed class ColorConsoleLogger(
         string name,
