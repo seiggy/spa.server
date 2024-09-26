@@ -1,4 +1,4 @@
-# react.server
+# spa.server
 
 spa.server is a .NET 8 ASP.NET Core generic hosting app designed to facilitate the hosting of React Single Page Applications (SPAs) behind the Kestrel web server within a Docker container. This project provides a seamless way to serve your React applications with ease and includes various enhancements like configuration dumping and static file compression.
 
@@ -40,20 +40,20 @@ RUN npm ci
 ADD . .
 RUN npm run build
 
-FROM seiggy/react.server:latest
+FROM seiggy/spa.server:latest
 EXPOSE 80
 COPY --from=builder /code/build /app/wwwroot
 ```
 
 ### Configuration
 
-To configure the application, you can set environment variables or app settings in the `{"react": {}}` group within the `IConfiguration` store. These settings will be accessible via the `/api/configuration` endpoint. If you want to use Environment variables, prefix your variable with `react__` to have .NET automatically pick it up and add it to the config. Example: `react__apiUrl`.
+To configure the application, you can set environment variables or app settings in the `{"spa": {}}` group within the `IConfiguration` store. These settings will be accessible via the `/api/configuration` endpoint. If you want to use Environment variables, prefix your variable with `react__` to have .NET automatically pick it up and add it to the config. Example: `react__apiUrl`.
 
 ### Example Configuration
 
 ```json
 {
-  "react": {
+  "spa": {
     "apiUrl": "https://api.yourdomain.com",
     "environment": "production"
   }
