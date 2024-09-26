@@ -10,17 +10,17 @@ ENV ASPNETCORE_URLS=http://+:5184
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["src/react.server.csproj", "react.server/"]
-RUN dotnet restore "./react.server/react.server.csproj"
-COPY src/ react.server/
-WORKDIR "/src/react.server"
-RUN dotnet build "./react.server.csproj" -c $BUILD_CONFIGURATION -o /app/build
+COPY ["src/spa.server.csproj", "spa.server/"]
+RUN dotnet restore "./spa.server/spa.server.csproj"
+COPY src/ spa.server/
+WORKDIR "/src/spa.server"
+RUN dotnet build "./spa.server.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./react.server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./spa.server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "react.server.dll"]
+ENTRYPOINT ["dotnet", "spa.server.dll"]

@@ -21,7 +21,7 @@ public class ConfigurationController : ControllerBase
     {
         var jsConfig = new StringBuilder();
         jsConfig.Append("window.env = {");
-        foreach (var item in _configration.GetSection("react").GetChildren())
+        foreach (var item in _configration.GetSection("spa").GetChildren())
         {
             jsConfig.Append(item.Key);
             jsConfig.Append(": ");
