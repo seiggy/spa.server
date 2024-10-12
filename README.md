@@ -1,3 +1,9 @@
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/seiggy/spa.server/docker-image.yml)
+![Docker Pulls](https://img.shields.io/docker/pulls/seiggy/spa.server)
+![Docker Image Version](https://img.shields.io/docker/v/seiggy/spa.server)
+![GitHub License](https://img.shields.io/github/license/seiggy/spa.server)
+
+
 # spa.server
 
 spa.server is a .NET 8 ASP.NET Core generic hosting app designed to facilitate the hosting of React Single Page Applications (SPAs) behind the Kestrel web server within a Docker container. This project provides a seamless way to serve your React applications with ease and includes various enhancements like configuration dumping and static file compression.
