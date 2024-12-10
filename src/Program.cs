@@ -46,7 +46,7 @@ namespace spa.server
             app.UseStaticFiles(options: new StaticFileOptions()
             {
                 HttpsCompression = HttpsCompressionMode.Compress,
-                OnPrepareResponseAsync = async context =>
+                OnPrepareResponse = context =>
                 {
                     context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800";
                 }
@@ -55,7 +55,13 @@ namespace spa.server
             app.MapControllers();
 
             var appVersion = builder.Configuration.GetValue<string>("spa:version");
-            app.MapFallbackToFile($"/index.html?v={appVersion}");
+            app.MapFallbackToFile("/index.html", options: new StaticFileOptions()
+            {
+                OnPrepareResponse = context =>
+                {
+                    context.Context.Response.Headers[HeaderNames.CacheControl] = "no-cache";
+                }
+            });
 
             app.Run();
         }
