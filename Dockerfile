@@ -11,7 +11,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/spa.server.csproj", "spa.server/"]
+COPY ["spa.server.ServiceDefaults/spa.server.ServiceDefaults.csproj", "spa.server.ServiceDefaults/"]
 RUN dotnet restore "./spa.server/spa.server.csproj"
+COPY spa.server.ServiceDefaults/ spa.server.ServiceDefaults/
 COPY src/ spa.server/
 WORKDIR "/src/spa.server"
 RUN dotnet build "./spa.server.csproj" -c $BUILD_CONFIGURATION -o /app/build
