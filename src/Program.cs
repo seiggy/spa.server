@@ -49,13 +49,13 @@ namespace spa.server
             builder.Services.AddResponseCaching();
             builder.Services.AddResponseCompression();
             
-            //builder.WebHost.ConfigureKestrel((context, options) =>
-            //{
-            //    options.ListenAnyIP(5184, listenOptions =>
-            //    {
-            //        listenOptions.UseConnectionLogging();
-            //    });
-            //});
+            builder.WebHost.ConfigureKestrel((context, options) =>
+            {
+               options.ListenAnyIP(5184, listenOptions =>
+               {
+                   listenOptions.UseConnectionLogging();
+               });
+            });
 
             var app = builder.Build();
 
