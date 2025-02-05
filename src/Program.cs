@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.FeatureManagement;
 using Microsoft.Net.Http.Headers;
+using spa.server.Extensions;
 using spa.server.Logging;
 
 namespace spa.server
@@ -44,10 +45,15 @@ namespace spa.server
                     });
                 });
             }
+
             builder.AddServiceDefaults();
+
+            builder.Services.ConfigureHealthChecks(builder.Configuration);
             builder.Services.AddControllers();
             builder.Services.AddResponseCaching();
             builder.Services.AddResponseCompression();
+            builder.Services.AddRequestTimeouts();
+            builder.Services.AddOutputCache();
             
             builder.WebHost.ConfigureKestrel((context, options) =>
             {
@@ -59,7 +65,22 @@ namespace spa.server
 
             var app = builder.Build();
 
-            app.MapDefaultEndpoints();
+            app.UseStaticFiles(options: new StaticFileOptions()
+            {
+                HttpsCompression = HttpsCompressionMode.Compress,
+                OnPrepareResponse = context =>
+                {
+                    context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800";
+                }
+            });
+            app.UseRouting();
+
+            // workaround for hosting in docker w/ https proxy
+            app.Use((context, next) =>
+            {
+                context.Request.Scheme = "https";
+                return next(context);
+            });
 
             // Configure the HTTP request pipeline.
             var policyCollection = new HeaderPolicyCollection()
@@ -72,16 +93,12 @@ namespace spa.server
                         csp.AddFrameAncestors().Sources.Add(host.Trim());
                 });
             app.UseResponseCaching();
+            app.UseOutputCache();
+            app.UseRequestTimeouts();
 
+            app.MapDefaultEndpoints();
             app.UseDefaultFiles();
-            app.UseStaticFiles(options: new StaticFileOptions()
-            {
-                HttpsCompression = HttpsCompressionMode.Compress,
-                OnPrepareResponse = context =>
-                {
-                    context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800";
-                }
-            });
+            
             
             app.MapControllers();
 
