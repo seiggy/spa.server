@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "spa.server", "src\spa.server.csproj", "{349B9449-79BA-4067-965B-F9AB36BB5DC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spa.server.AppHost", "spa.server.AppHost\spa.server.AppHost.csproj", "{10E63D82-DA93-4C29-91C8-0895E8725515}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "spa.server.ServiceDefaults", "spa.server.ServiceDefaults\spa.server.ServiceDefaults.csproj", "{0A05590F-E277-4FFC-8CD4-7CC109C1239C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{349B9449-79BA-4067-965B-F9AB36BB5DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{349B9449-79BA-4067-965B-F9AB36BB5DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{349B9449-79BA-4067-965B-F9AB36BB5DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10E63D82-DA93-4C29-91C8-0895E8725515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E63D82-DA93-4C29-91C8-0895E8725515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E63D82-DA93-4C29-91C8-0895E8725515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E63D82-DA93-4C29-91C8-0895E8725515}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A05590F-E277-4FFC-8CD4-7CC109C1239C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A05590F-E277-4FFC-8CD4-7CC109C1239C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A05590F-E277-4FFC-8CD4-7CC109C1239C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A05590F-E277-4FFC-8CD4-7CC109C1239C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
