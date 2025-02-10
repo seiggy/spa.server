@@ -36,9 +36,19 @@ public class ConfigurationController : ControllerBase
         }
 
         jsConfig.Append("features: {");
+        var first = true;
         // Retrieve feature flags and their variants
         await foreach (var feature in _featureManager.GetFeatureNamesAsync(HttpContext.RequestAborted))
         {
+            if (!first)
+            {
+                jsConfig.Append(',');
+            }
+            else
+            {
+                first = false;
+            }
+
             var isEnabled = await _featureManager.IsEnabledAsync(feature);
             jsConfig.Append($"{feature}: {{ enabled: {isEnabled.ToString().ToLower()}");
 
@@ -52,17 +62,15 @@ public class ConfigurationController : ControllerBase
                 {
                     jsConfig.Append($"{{ name: \"{variant.Name}\", parameters: {JsonSerializer.Serialize(variant.Parameters)} }},");
                 }
-                jsConfig.Append("]");
+                jsConfig.Append(']');
             }
             var assignedVariant = await _featureManager.GetVariantAsync(feature, HttpContext.RequestAborted);
             if (assignedVariant != null)
             {
-                jsConfig.Append($", activeVariant: {{ name: \"{assignedVariant.Name}\", value: {assignedVariant.Configuration.Value} }}");
+                jsConfig.Append($", activeVariant: {{ name: \"{assignedVariant.Name}\", value: \"{assignedVariant.Configuration.Value}\" }}");
             }
-
-            jsConfig.Append("},");
+            jsConfig.Append('}');
         }
-
 
         jsConfig.Append("}");
         return new JavaScriptResult(jsConfig.ToString());
