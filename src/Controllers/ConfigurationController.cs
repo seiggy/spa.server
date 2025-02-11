@@ -71,8 +71,9 @@ public class ConfigurationController : ControllerBase
             }
             jsConfig.Append('}');
         }
+        jsConfig.Append('}');
 
-        jsConfig.Append("}");
+        jsConfig.Append('}');
         return new JavaScriptResult(jsConfig.ToString());
     }
 }
