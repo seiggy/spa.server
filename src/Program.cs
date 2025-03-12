@@ -70,7 +70,7 @@ namespace spa.server
                 HttpsCompression = HttpsCompressionMode.Compress,
                 OnPrepareResponse = context =>
                 {
-                    context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800";
+                    context.Context.Response.Headers[HeaderNames.CacheControl] = "no-cache";
                 }
             });
             app.UseRouting();
